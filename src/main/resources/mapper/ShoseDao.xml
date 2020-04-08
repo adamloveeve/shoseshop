@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.soecode.jt.dao.ShoseDao">
+	<!-- 目的：为dao接口方法提供sql语句配置 -->
+	<select id="findByShoseId" resultType="Shose" parameterType="long">
+		<!-- 具体的sql -->
+		SELECT
+			shose_id,
+			name,
+			number,
+			price,
+			remarks,
+			simg
+		FROM
+			shose
+		WHERE
+			shose_id = #{ShoseId}
+	</select>
+	
+	<select id="findAll" resultType="Shose">
+		SELECT
+			shose_id,
+			name,
+			number,
+			price,
+			remarks,
+			simg
+		FROM
+			shose
+		ORDER BY
+			shose_id
+	</select>
+	<update id="reduceNumber">
+		UPDATE shose
+		SET number = number - 1
+		WHERE
+			shose_id = #{ShoseId}
+		AND number > 0
+	</update>
+</mapper>
